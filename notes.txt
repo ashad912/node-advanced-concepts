@@ -1,0 +1,16 @@
+//node has V8 engine and libuv under the hood
+//V8 is Google engine invented to write JS without browser
+//libuv is necessary to user system resources like network or files
+//libuv is completly written in C++
+//V8 is in 70% written in C++
+//Node is container whitch allows us to write code in JS
+
+//example of pbkdf2 function (internal crypto module)
+//after bunch of if-checks code binds PBKDF2 function from C++ site
+//C++ uses V8 engine, gives Node easy access to underlying operation system and export functions to JS site
+
+//OS Scheduler decides which thread should be processed
+//more cores -> mutlthreading
+//detected thread pause -> switch between threads
+
+//one node program has only one thread, and one event loop
