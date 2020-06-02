@@ -1,0 +1,9 @@
+//cluster manager - manage all node servers instaces
+
+//first instance of node becomes cluster manager
+
+//cluster manager creates worker instance (it is requires cluster std lib) by cluster.fork() method
+
+//second and nexts index.js runs, create Worker Instance
+
+//faster response, more predictable times thanks to clustering

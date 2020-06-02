@@ -7,7 +7,7 @@ const pedningOSTasks = []
 const pendingOperations = []
 
 // New timers, tasks, operations are recorded from myFile running
-myFile.runContents(); //first - node executes all content in the file
+myFile.runContents(); //first - node executes all content in the file (with require/import files!!!)
 
 function shouldContinue() {
     // Check one: Any pending setTimeout, setInterval, setImmediate?
@@ -28,7 +28,7 @@ while(shouldContinue()){
     // - a new pendingOperation is done
     // - a timer is about to complete
 
-    // 4) Look at pendingTimers. Call any setImmediate
+    // 4) Look at pendingTimers. Call any setImmediate -> https://flaviocopes.com/node-setimmediate/
 
     // 5) Handle any 'close' events (cleanup events "readStream")
 }
