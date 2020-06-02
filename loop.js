@@ -30,7 +30,7 @@ while(shouldContinue()){
 
     // 4) Look at pendingTimers. Call any setImmediate
 
-    // 5) Handle any 'close' events
+    // 5) Handle any 'close' events (cleanup events "readStream")
 }
 
 

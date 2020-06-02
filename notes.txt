@@ -13,4 +13,5 @@
 //more cores -> mutlthreading
 //detected thread pause -> switch between threads
 
-//one node program has only one thread, and one event loop
+//node event loop is single threaded
+//some of node framework/ std lib can be not single threaded!!!
