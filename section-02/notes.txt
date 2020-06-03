@@ -17,4 +17,18 @@
 //need to choose appropriate number of threads to get the best performance
 //appropriate number is connected with number of psychical or software cores in machine
 
+//processing 6 hashes by 6 cluster instances at the same time on two core cpu -> result is 3s for all requests
+//processing 6 hashes by 2 cluster instances at the same time on two core cpu -> result is 1s for first two requests, 2s for second pair, and 3s for third pair (each pair is processing within 1 second)
+
 //clustering is diffrent thing than extensions of threads in threadpool
+
+//difference between logical and physical cores, multithreading issues
+
+//2 psychical cores x 2 threads for core = 4 logical cores
+
+//using pm2 module in production environment!
+
+//webworker-threads - experimental
+//used to do stuff off the event loop - additional worker threads
+//webworker can use free core (concurrency), and perform second operation in similar time 
+
