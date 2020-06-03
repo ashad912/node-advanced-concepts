@@ -6,4 +6,15 @@
 
 //second and nexts index.js runs, create Worker Instance
 
-//faster response, more predictable times thanks to clustering
+//faster response (when one instance is busy, second can handle other requests), more predictable times thanks to clustering
+
+//benchmark on mac: ab -c 1 -n 2 localhost:3000/
+
+
+//machine has uppper limit to process number of threads
+//cpu is trying to bounce around additional tasks, and it takes significantly longer
+
+//need to choose appropriate number of threads to get the best performance
+//appropriate number is connected with number of psychical or software cores in machine
+
+//clustering is diffrent thing than extensions of threads in threadpool
