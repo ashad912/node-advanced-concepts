@@ -58,8 +58,6 @@ mongoose.Query.prototype.exec = async function () {
         return exec.apply(this, arguments)
     }
 
-    console.log(this.getQuery())
-
     const key = JSON.stringify(Object.assign({}, this.getQuery(), {
         collection: this.mongooseCollection.name
     }))

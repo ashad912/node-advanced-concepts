@@ -40,7 +40,12 @@ module.exports = app => {
     // // if no, we need to respond to request
     // // and update our cache to store the data
 
+    // console.log(req.user.id, req.user._id)
 
+    // const copy = req.user.toObject()
+
+    // console.log(copy.id, copy._id)
+    
     const blogs = await Blog.find({ _user: req.user.id }).cache({
       key: req.user.id
     });
