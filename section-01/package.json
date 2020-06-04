@@ -1,0 +1,19 @@
+{
+  "name": "advanced-concepts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "threads.js",
+  "scripts": {
+    "start": "set UV_THREADPOOL_SIZE=5 && node threads.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashad912/node-advanced-concepts.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ashad912/node-advanced-concepts/issues"
+  },
+  "homepage": "https://github.com/ashad912/node-advanced-concepts#readme"
+}

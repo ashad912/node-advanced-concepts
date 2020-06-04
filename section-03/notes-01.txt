@@ -1,0 +1,57 @@
+//querying mongo
+
+//by index to record
+
+//when query with specific field -> mongo does full collection scan
+//adding index is solution, hwvr for more complex structures it can be overwhelming in handling
+//moreover document getting bigger due to additional fields
+
+//idea of caching layer
+
+//caching layer is between mongoose and MongoDB
+
+//caching layer saves received queries and responses from db
+//saving response last in the same time as sending it to mongoose 
+
+//if incoming query is equivalent to the one of saved ones, caching layer send saved response
+//(for this query) without touching MongoDB
+
+//cache server is only for fetching data, never for writing!!!
+
+//cache server with we're going to use is Redis
+
+//redis library work similiar to js key-values
+
+//redis commands in node envriroment:
+
+//const redis = require('redis')
+//const redisUrl = 'redis://127.0.0.1:6379'
+//const client = redis.createClient(redisUrl)
+
+//'client' is an object, which can manipulate Redis server
+
+//client.set('hi', 'there')
+//client.get('hi', (err, value) => console.log(value))
+
+//we can pass ref to console.log
+//client.get('hi', console.log)
+
+//as callback we get console.log(err, value)
+//err and value are returned by Redis
+
+//nested objects in redis by hset and hget
+//client.hset('german', 'red', 'rot')
+//client.hget('german', 'red', console.log)
+
+//client.set('colors', {red: 'rojo'}) -> not gonna work, get returns "[object Object]"
+//we need to use JSON.stringify and JSON.parse after that
+//client.set('colors', JSON.stringify({red: 'rojo'}))
+//client.get('colors', (err, val) => console.log(JSON.parse(val)))
+
+
+//redis query and result of query
+//different users get different result of the same query
+//query key has to be consistent but unique between query executions
+
+
+//client.flushall() to delete all data in redis

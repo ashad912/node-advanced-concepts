@@ -1,0 +1,69 @@
+//triggering mongoose queries
+// - by .exec()
+// - by .then() //behind the scenes calls .exec()
+// - by await
+
+//should overwrite query.exec function ->
+
+/*
+
+query.exec = function() {
+    // to check to see if this query has already been executed
+    // and if it has return the result rifht away
+
+    const result = client.get('query key')
+
+    if(result){
+        return result
+    }
+
+    // overwhise issue the query *as normal*
+
+    const result = runTheOriginalQueryFunction();
+
+    // the save the value in redis
+
+    client.set('query key', result)
+
+    return result;
+}
+
+*/
+
+
+// client.set('color, 'red', 'EX', 5)  <- expires after 5 seconds
+
+
+//finding a way to do figure out unique cache key
+
+/*
+const query = Person.
+  .find({ occupation: /host/ })
+  .where('name.last').equals('Ghost')
+  .where('age').gt(17).lt(66)
+  .where('likes').in(['vaporizing', 'talking'])
+  .limit(10)
+  .sort('-occupation')
+  .select('name occupation')
+  .exec(callback)
+*/
+
+//query.getOptions() <- get unique query object
+//then parse to string!
+
+
+//storing data in redis, is not cheap at all
+//we want redis to not store data from all queries
+
+//idea do adding .cache() method at the end of query to know if query is cached
+//good in documentation
+
+//issue of cache expiration
+
+//cache clearing
+
+//way to invoke middleware after router handler?
+// await next() in clearHash middleware!!!
+
+//clear caching strategy strongly depends on project structure logic!!
+
