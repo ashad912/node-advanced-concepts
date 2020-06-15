@@ -1,0 +1,80 @@
+//test factories
+//session factory
+//user factory
+
+//generate content for tests
+
+//extending Page class to make encapsulated methods
+
+//solution - monkeypatching:
+
+const Page = require('puppeteer/lib/Page')
+
+Page.prototype.login = async function() {
+    // Simulating loggin in, by existing user!
+    // We are faking cookie session, using buffer nad keygrip
+    const user = await userFactory()
+    const { session, sig } = sessionFactory(user)
+
+    await page.setCookie({ name: 'session', value: session })
+    await page.setCookie({ name: 'session.sig', value: sig })
+    await page.goto('localhost:3000')
+
+    // li:nth-child(2) or li:last-child 
+    // or a[href="/auth/logout"] <- appropriate quotes!
+    const selector = 'a[href="/auth/logout"]'
+
+    // It is possible that page has not been loaded yet!
+    // Let's use waitFor
+    await page.waitFor(selector)
+}
+
+//do alter approach!!!
+
+//codepen for testing
+
+//1. extending Page class? problem with class Page change for puppeteer
+//2. pass page instance to constructor? problem with nested access to standard methods: customPage.page.goto() 
+//can rewrite method to 'child' class, but it is not efficient
+
+//we will use Proxy, to manage access between classes!
+//Proxy is useful, when we want to add functionality without modify source class
+//we can build second class, and join with first class without modification using Proxy 
+
+const proxy = new Proxy(sth, {
+    get(target, property){
+        console.log(property) 
+    }
+})
+
+proxy.halohalo // -> "halohalo"
+
+/////////////
+
+class Greetings {
+    english() {return: 'Hello'}
+}
+
+class MoreGreetings {
+    german() { return: 'Hallo' }
+}
+
+const moreGreetings = new MoreGreetings()
+const greetings = new Greetings()
+
+const allGreetings = new Proxy(moreGreetings, {
+    get(target, property){
+        // Target is moreGreetings instance, property is thing we want access to
+        return target[property] || greetings[property] //also look at greetings object - redirect access
+    }
+})
+
+console.log(allGreetings.german) //got referance -> german() { return 'Hallo'; }
+console.log(allGreetings.english())
+
+// building proxy, which manages three classes!
+// creating helpers methods to substitute strange functions??
+
+// testing happy endpoints and security
+
+// rewriting tests to setup (reusable)! describe -> test
