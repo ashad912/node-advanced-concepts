@@ -71,3 +71,6 @@
 
 // git remote remove origin
 // git add origin ...
+
+// Deleting jest depracations -> setupAfterEnv
+// Manage mongoose with async / await

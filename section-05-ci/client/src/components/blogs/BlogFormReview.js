@@ -51,7 +51,7 @@ class BlogFormReview extends Component {
     return (
       <form onSubmit={this.onSubmit.bind(this)}>
         <h5>Please confirm your entries</h5>
-        {this.renderFields()}
+        {this.renderFields()}z
 
         {this.renderButtons()}
       </form>
