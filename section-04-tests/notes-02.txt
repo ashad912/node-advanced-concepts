@@ -78,3 +78,24 @@ console.log(allGreetings.english())
 // testing happy endpoints and security
 
 // rewriting tests to setup (reusable)! describe -> test
+
+// testing protected api
+
+// sample console request! :
+
+fetch('/api/blogs', {
+    method: 'POST',
+    credentials: 'same-origin',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        title: 'My Title',
+        content: 'My Content'
+    })
+});
+
+//we can fetch api, using jest itself or other modules like supertest
+//but we want to do it from chromium browser
+
+//using Promise.all to do make request in parallel
