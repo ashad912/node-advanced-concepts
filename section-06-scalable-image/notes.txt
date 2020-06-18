@@ -22,3 +22,21 @@
 // AWS generate URL, which has domain, file name, access key, file type, expires time, signature.
 // User can upload only single, specific file, cannot fake URL. 
 // URL expires and works only for specific S3 bucket.
+
+// Using IAM (Identity and Access Management) to autheticate AWS S3.
+
+// IAM has Policy and User record.
+// Policy describe what sth can do
+// User get assigned policies
+
+// Getting AWS S3 id and secret key!
+// Instaliing aws-sdk
+
+// AWS SDK for JavaScript -> S3 -> getSignedUrl(operation, params, callback)
+// https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html
+
+// Param 'operation' will be string command: 'putObject'
+// Params - bucket, key (name of the file), contentType (image in our case)
+
+// We need to provide unique files names!
+// Organize structure in folders.
