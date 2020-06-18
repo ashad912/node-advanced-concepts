@@ -14,6 +14,18 @@ export const handleToken = token => async dispatch => {
 };
 
 export const submitBlog = (values, file, history) => async dispatch => {
+  const uploadConfig = await axios.get('/api/upload')
+  try{
+    await axios.put(uploadConfig.data.url, file, {
+      headers: { // Making sure, file type is the same, as that used when creating presigned URL
+        'Content-Type': file.type
+      }
+    })
+  }catch(e){
+    console.log(e)
+  }
+  
+
   const res = await axios.post('/api/blogs', values);
 
   history.push('/blogs');

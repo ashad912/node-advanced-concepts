@@ -40,3 +40,7 @@
 
 // We need to provide unique files names!
 // Organize structure in folders.
+
+// Modyfing React app to get presigned URL, and next send PUT request with attached with file
+// There is a problem with CORS - making request to different domain
+// Some malicious dev, can grab presigned URL, and make request from his service, if CORS are enable for everyone :(
