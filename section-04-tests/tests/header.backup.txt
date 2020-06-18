@@ -1,0 +1,65 @@
+const puppeteer = require('puppeteer')
+const sessionFactory = require('./factories/sessionFactory')
+const userFactory = require('./factories/userFactory')
+
+let browser, page;
+
+beforeEach(async () => {
+    browser = await puppeteer.launch({
+        headless: false
+    })
+    page = await browser.newPage({})
+    await page.goto('localhost:3000')
+})
+
+
+afterEach(async () => {
+    await browser.close()
+})
+
+
+test('the header has the correct text', async () => {
+
+
+    //why so complicated?
+    //el => el.innerHTML is converted to string, sent, converted to function,
+    //and in the end Chromium execute it
+    //dollar sign is normal sign, nothing special
+    const text = await page.$eval('a.brand-logo', el => el.innerHTML)
+
+    expect(text).toEqual('Blogster')
+})
+
+
+test('clicking login starts oauth flow', async () => {
+    await page.click('.right a')
+
+    const url = await page.url()
+
+    expect(url).toMatch(/accounts\.google\.com/)
+})
+
+//test.only!!!! run only this test
+
+test('When signed in, shows logout button', async () => {
+    // Simulating loggin in, by existing user!
+    // We are faking cookie session, using buffer nad keygrip
+    const user = await userFactory()
+    const { session, sig } = sessionFactory(user)
+
+    await page.setCookie({ name: 'session', value: session })
+    await page.setCookie({ name: 'session.sig', value: sig })
+    await page.goto('localhost:3000')
+
+    // li:nth-child(2) or li:last-child 
+    // or a[href="/auth/logout"] <- appropriate quotes!
+    const selector = 'a[href="/auth/logout"]'
+
+    // It is possible that page has not been loaded yet!
+    // Let's use waitFor
+    await page.waitFor(selector)
+    const text = await page.$eval(selector, el => el.innerHTML)
+
+    expect(text).toEqual('Logout')
+
+})

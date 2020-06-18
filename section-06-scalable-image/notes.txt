@@ -1,0 +1,24 @@
+// Adding image upload to React
+
+// Where do we store images?
+
+// 1. - in DB - a lot of space, expensive 15$ per GB :<
+// 2. - hard drive attached to server - does not work well with horizontal scaling
+// 3. - outside data store - running in the cloud - very cheap 0.023$ per GB
+
+// Casual approach
+// Take file from frontend to backend, store in temp storage and pass to Amazon data store
+
+// Scalable approach
+// Client tells server it needs to upload a file to store. Includes file name and file type.
+// Server asks store for a presigned URL (tailored for requested file).
+// Store gives server a presigned URL.
+// Server sends URL to client.
+// Client uploads image file directly to store.
+// React client tells server the upload was successful. Server saves URL of that new image with the blog post.
+
+// We will use AWS S3
+
+// AWS generate URL, which has domain, file name, access key, file type, expires time, signature.
+// User can upload only single, specific file, cannot fake URL. 
+// URL expires and works only for specific S3 bucket.

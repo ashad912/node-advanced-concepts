@@ -1,0 +1,62 @@
+// headless Chromium - without interface
+
+// cypress style testing here
+// but using puppeteer
+
+// puppeteer
+// browser - window, page - tab
+
+
+//words apart between nodejs land and Chromium land
+
+//passport google oauth
+
+//user forwarded to google
+//user enters login and is redirected to /auth/google/callback
+//server asks for more details about user
+//Google responds with user profile
+//server sets cookie on users browser that identifies them
+//all future reqs include cookie data tha identifies this user
+
+
+//cookie-session
+//pulls props 'session' and 'session.sig' off cookie
+//uses 'session.sig' to ensure 'session was not manipulated
+//decode 'session' into JS object
+//place that object on 'req.session'
+
+//passport
+//look at req.session and try to find req.session.passport.user
+//if an id is stored there, pass it to 'deserializeUser'
+//get back a user and assign it to 'req.user'
+
+// req.user.id and req.user._id are both available because it is MongoObject
+
+/*
+    console.log(req.user.id, req.user._id) //both available
+
+    const copy = req.user.toObject()
+
+    console.log(copy.id, copy._id) //no copy.id field!
+*/
+/*
+    const session = <token>
+    const Buffer = require('safe-buffer').Buffer
+    Buffer.from(session, 'base64').toString('utf-8') //converts to readable thing
+*/
+
+//session + cookie-key = session.sig
+
+//cookie-session uses cookie which uses keygrip
+
+//const session = 'eyJwYXNzcG9ydCI6eyJ1c2VyIjoiNWVkOGM5MDNkZWQ4MTEyYjFjYzRhYjI2In19'
+//const Keygrip = require('keygrip')
+//const keygrip = new Keygrip(['123123123'])
+//keygrip.sign('session=' + session)
+//-> 'dhrk9NbeHasCBG45Z0uY7wAE_W0'
+
+//keygrip.verify('session=' + session, 'dhrk9NbeHasCBG45Z0uY7wAE_W0')
+//-> true
+
+//keygrip.verify('session=' + session, 'dhrk9NbeHasCBG45Z0uY7wAE')
+//-> false
