@@ -1,0 +1,1 @@
+export const DOMAIN_URL = 'https://node-advanced-concepts.s3.eu-central-1.amazonaws.com/'

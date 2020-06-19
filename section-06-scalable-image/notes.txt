@@ -44,3 +44,18 @@
 // Modyfing React app to get presigned URL, and next send PUT request with attached with file
 // There is a problem with CORS - making request to different domain
 // Some malicious dev, can grab presigned URL, and make request from his service, if CORS are enable for everyone :(
+
+// Resolving CORS
+// 1. Make sure that bucket name is correct
+// 2. Creating CORS rules on AWS
+
+// Resolving 400 status
+// 1. Add region key s3 config instance!
+
+// Access to cloud content
+// Users are allowed to see pictures, which uploaded to blog.
+// Need to disable permission option: https://stackoverflow.com/a/53497106
+
+// Have to generate and paste AWS policy.
+
+// Need to disable second permission option (Permissions/Block public access).

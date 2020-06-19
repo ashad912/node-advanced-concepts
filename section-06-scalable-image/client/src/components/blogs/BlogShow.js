@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchBlog } from '../../actions';
+import { DOMAIN_URL } from './urls'
 
 class BlogShow extends Component {
   componentDidMount() {
     this.props.fetchBlog(this.props.match.params._id);
+  }
+
+  renderImage(){
+    if(this.props.blog.imageUrl){
+      return <img alt='blog_img' src={DOMAIN_URL + this.props.blog.imageUrl}></img>
+    }
   }
 
   render() {
@@ -18,6 +25,7 @@ class BlogShow extends Component {
       <div>
         <h3>{title}</h3>
         <p>{content}</p>
+        {this.renderImage()}
       </div>
     );
   }
